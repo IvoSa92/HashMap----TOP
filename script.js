@@ -2,6 +2,7 @@ class HashMap {
   constructor() {
     this.capacity = 16;
     this.storage = new Array(this.capacity);
+    this.counter = 0;
   }
 
   hash(key) {
@@ -16,6 +17,21 @@ class HashMap {
   }
 
   set(key, value) {
+    if (this.counter >= this.capacity * 0.75) {
+      let oldStorage = this.storage;
+      this.capacity = this.capacity * 2;
+      this.storage = new Array(this.capacity);
+      this.counter = 0;
+
+      oldStorage.forEach((bucket) => {
+        if (bucket) {
+          bucket.forEach(([oldKey, oldValue]) => {
+            this.set(oldKey, oldValue);
+          });
+        }
+      });
+    }
+
     const index = this.hash(key);
 
     if (!this.storage[index]) {
@@ -29,7 +45,11 @@ class HashMap {
       }
     }
 
+    if (index < 0 || index >= this.storage.length) {
+      throw new Error("Trying to access index out of bound");
+    }
     this.storage[index].push([key, value]);
+    this.counter++;
   }
 }
 
