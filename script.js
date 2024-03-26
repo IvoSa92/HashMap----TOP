@@ -22,6 +22,13 @@ class HashMap {
       this.storage[index] = [];
     }
 
+    for (let i = 0; i < this.storage[index].length; i++) {
+      if (this.storage[index][i][0] === key) {
+        this.storage[index][i][1] = value;
+        return;
+      }
+    }
+
     this.storage[index].push([key, value]);
   }
 }
@@ -29,4 +36,4 @@ class HashMap {
 const map = new HashMap();
 map.set("ivo", "ist verdammt cool");
 
-//console.log(map.storage);
+console.log(map.storage);
