@@ -1,6 +1,7 @@
 class HashMap {
   constructor() {
     this.capacity = 16;
+    this.storage = new Array(this.capacity);
   }
 
   hash(key) {
@@ -9,7 +10,23 @@ class HashMap {
     const primeNumber = 31;
     for (let i = 0; i < key.length; i++) {
       hashCode = primeNumber * hashCode + key.charCodeAt(i);
+      hashCode = hashCode % this.capacity;
     }
-    return hashCode % this.capacity;
+    return hashCode;
+  }
+
+  set(key, value) {
+    const index = this.hash(key);
+
+    if (!this.storage[index]) {
+      this.storage[index] = [];
+    }
+
+    this.storage[index].push([key, value]);
   }
 }
+
+const map = new HashMap();
+map.set("ivo", "ist verdammt cool");
+
+//console.log(map.storage);
