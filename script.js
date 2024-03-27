@@ -131,6 +131,19 @@ class HashMap {
     }
     return keysArray;
   }
+
+  values() {
+    const valuesArray = [];
+
+    for (let i = 0; i < this.storage.length; i++) {
+      if (this.storage[i]) {
+        this.storage[i].forEach((bucket) => {
+          valuesArray.push(bucket[1]);
+        });
+      }
+    }
+    return valuesArray;
+  }
 }
 
 const map = new HashMap();
@@ -140,4 +153,4 @@ map.set("miriam", "haha");
 map.set("Votz", "qefqwevq1");
 
 //console.log(map.storage);
-map.keys();
+console.log(map.values());
