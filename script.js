@@ -61,6 +61,20 @@ class HashMap {
       return null;
     }
   }
+
+  has(key) {
+    let index = this.hash(key);
+
+    if (this.storage[index]) {
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  }
 }
 
 const map = new HashMap();
