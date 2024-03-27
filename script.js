@@ -158,12 +158,3 @@ class HashMap {
     return pairArray;
   }
 }
-
-const map = new HashMap();
-map.set("ivo", "ist verdammt cool");
-map.set("ovi", "iwas");
-map.set("miriam", "haha");
-map.set("Votz", "qefqwevq1");
-
-//console.log(map.storage);
-console.log(map.entries());
