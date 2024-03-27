@@ -118,14 +118,26 @@ class HashMap {
     }
     this.counter = 0;
   }
+
+  keys() {
+    const keysArray = [];
+
+    for (let i = 0; i < this.storage.length; i++) {
+      if (this.storage[i]) {
+        this.storage[i].forEach((bucket) => {
+          keysArray.push(bucket[0]);
+        });
+      }
+    }
+    return keysArray;
+  }
 }
 
 const map = new HashMap();
 map.set("ivo", "ist verdammt cool");
 map.set("ovi", "iwas");
 map.set("miriam", "haha");
-map.set("spass", "qefqwevq1");
+map.set("Votz", "qefqwevq1");
 
-map.clear();
-
-console.log(map.storage);
+//console.log(map.storage);
+map.keys();
