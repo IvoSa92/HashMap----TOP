@@ -51,6 +51,16 @@ class HashMap {
     this.storage[index].push([key, value]);
     this.counter++;
   }
+
+  get(key) {
+    let index = this.hash(key);
+
+    if (this.storage[index]) {
+      return this.storage[index][0][1];
+    } else {
+      return null;
+    }
+  }
 }
 
 const map = new HashMap();
