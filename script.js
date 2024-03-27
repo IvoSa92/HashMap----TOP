@@ -78,6 +78,24 @@ class HashMap {
     }
     return false;
   }
+
+  remove(key) {
+    let index = this.hash(key);
+
+    if (this.storage[index]) {
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          this.storage[index].splice(i, 1);
+
+          if (this.storage[index].length === 0) {
+            delete this.storage[index];
+          }
+          return true;
+        }
+      }
+      return false;
+    }
+  }
 }
 
 const map = new HashMap();
