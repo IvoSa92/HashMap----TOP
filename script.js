@@ -56,9 +56,13 @@ class HashMap {
     let index = this.hash(key);
 
     if (this.storage[index]) {
-      return this.storage[index][0][1];
-    } else {
-      return null;
+      for (let i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          return this.storage[index][i][1];
+        } else {
+          return null;
+        }
+      }
     }
   }
 
@@ -69,11 +73,10 @@ class HashMap {
       for (let i = 0; i < this.storage[index].length; i++) {
         if (this.storage[index][i][0] === key) {
           return true;
-        } else {
-          return false;
         }
       }
     }
+    return false;
   }
 }
 
