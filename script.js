@@ -109,11 +109,23 @@ class HashMap {
     }
     return keys;
   }
+
+  clear() {
+    for (let i = 0; i < this.storage.length; i++) {
+      if (this.storage[i]) {
+        delete this.storage[i];
+      }
+    }
+    this.counter = 0;
+  }
 }
 
 const map = new HashMap();
 map.set("ivo", "ist verdammt cool");
+map.set("ovi", "iwas");
+map.set("miriam", "haha");
+map.set("spass", "qefqwevq1");
+
+map.clear();
 
 console.log(map.storage);
-
-map.length();
