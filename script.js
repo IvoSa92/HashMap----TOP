@@ -90,11 +90,24 @@ class HashMap {
           if (this.storage[index].length === 0) {
             delete this.storage[index];
           }
+          this.counter--;
           return true;
         }
       }
       return false;
     }
+  }
+
+  length() {
+    let keys = 0;
+    for (let i = 0; i < this.storage.length; i++) {
+      if (this.storage[i]) {
+        this.storage[i].forEach((bucket) => {
+          keys++;
+        });
+      }
+    }
+    return keys;
   }
 }
 
@@ -102,3 +115,5 @@ const map = new HashMap();
 map.set("ivo", "ist verdammt cool");
 
 console.log(map.storage);
+
+map.length();
